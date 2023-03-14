@@ -3,9 +3,9 @@ package usecases
 import entity "github.com/inaciogu/go-product-service/internal/entities"
 
 type ListAllProductsOutputDto struct {
-	ID    string
-	Name  string
-	Price float64
+	ID    string  `json:"id"`
+	Name  string  `json:"name"`
+	Price float64 `json:"price"`
 }
 
 type ListAllProductsUseCase struct {

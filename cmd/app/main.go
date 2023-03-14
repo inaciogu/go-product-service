@@ -32,10 +32,10 @@ func main() {
 
 	router := chi.NewRouter()
 
-	router.Post("/products", productHandlers.CreateProduct)
-	router.Get("/products", productHandlers.ListAllProducts)
+	router.Post("/", productHandlers.CreateProduct)
+	router.Get("/", productHandlers.ListAllProducts)
 
-	go http.ListenAndServe(":8000", router)
+	go http.ListenAndServe(":8080", router)
 
 	msgChan := make(chan *kafka.Message)
 	go akafka.Consume([]string{"products"}, "host.docker.internal:9094", msgChan)

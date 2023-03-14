@@ -1,14 +1,23 @@
 version: '3'
 
+networks:
+  kong-net:
+    name: kong-net
+    driver: bridge
+
 services:
   goapp:
     build: .
     volumes:
       - .:/go/app
     ports:
-      - "8000:8000"
+      - "8080:8080"
+    networks:
+      - kong-net
     extra_hosts:
       - "host.docker.internal:172.17.0.1"
+    environment:
+      PORT: ":8080"
 
   mysql:
     image: mysql:5.7
